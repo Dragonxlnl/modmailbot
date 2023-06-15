@@ -47,12 +47,8 @@ module.exports = bot => {
 
     try {
       if(targetCategory.id == config.communityThreadCategoryId) {
-        //checks if user is admin to be able move to CT branch
-        if(utils.isAdmin(msg.member)){
-          return threads.moveThread(thread, targetCategory, false);
-        } else {
-          utils.postError(thread, "Only admins are allowed to move threads to this category");
-        }
+        //for specifically moving to the community category
+        return threads.moveThread(thread, targetCategory, false);
       } else {
         threads.moveThread(thread, targetCategory, ! utils.isAdmin(msg.member));
       }
